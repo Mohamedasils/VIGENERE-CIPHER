@@ -1,3 +1,6 @@
+# NAME: mohamedasil s
+## REG NO:212223040112
+## DATE:24.07.2026 
 # VIGENERE-CIPHER
 ## EX. NO: 4
  
@@ -30,7 +33,61 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+```
+#include <stdio.h>
+#include <string.h>
+
+void encrypt(char text[], char key[])
+{
+    int i, k = strlen(key);
+
+    for (i = 0; text[i] != '\0'; i++)
+    {
+        if (text[i] >= 'A' && text[i] <= 'Z')
+            text[i] = ((text[i] - 'A' + key[i % k] - 'A') % 26) + 'A';
+        else if (text[i] >= 'a' && text[i] <= 'z')
+            text[i] = ((text[i] - 'a' + key[i % k] - 'A') % 26) + 'a';
+    }
+}
+
+void decrypt(char text[], char key[])
+{
+    int i, k = strlen(key);
+
+    for (i = 0; text[i] != '\0'; i++)
+    {
+        if (text[i] >= 'A' && text[i] <= 'Z')
+            text[i] = ((text[i] - 'A' - (key[i % k] - 'A') + 26) % 26) + 'A';
+        else if (text[i] >= 'a' && text[i] <= 'z')
+            text[i] = ((text[i] - 'a' - (key[i % k] - 'A') + 26) % 26) + 'a';
+    }
+}
+
+int main()
+{
+    char text[100], key[100];
+
+    printf("Enter Message: ");
+    scanf("%s", text);
+
+    printf("Enter Key: ");
+    scanf("%s", key);
+
+    encrypt(text, key);
+    printf("Encrypted Message: %s\n", text);
+
+    decrypt(text, key);
+    printf("Decrypted Message: %s\n", text);
+
+    return 0;
+}
+```
 
 ## OUTPUT
+ <img width="708" height="380" alt="image" src="https://github.com/user-attachments/assets/042c3774-924b-444c-9cdc-09e5966a2550" />
 
-## RESULT
+## RESULT:
+Thus the program executed successfully
+
+
+
